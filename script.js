@@ -11,6 +11,8 @@ function generatePassword() {
     var numbArray = ['0','1','2','3','4','5','6','7','8','9'];
     var specArray = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '-', '_', '+', '='];
     var masterArray = [];
+    var length = document.getElementById("passwordLength").value;
+    var passwordOutput = '';
     if(document.getElementById("lowerCase").checked){
         for (let i = 0; i < lowerArray.length; i++) {
             masterArray.push(lowerArray[i]);
@@ -31,13 +33,19 @@ function generatePassword() {
             masterArray.push(specArray[i]);
         }
     }
-    var passwordOutput = '';
-    for (let i = 0; i < 10; i++) {
+    if (length > 128 || length < 8) {
+        alert("You must enter a number between 8 and 128.")
+    }else{
+    for (let i = 0; i < length; i++) {
         var masterArrayIndex = Math.floor(Math.random()*masterArray.length);
         passwordOutput += masterArray[masterArrayIndex];
     }
-    
+    }
+    if (document.getElementById("lowerCase").checked===false&&document.getElementById("upperCase").checked===false&&document.getElementById("numbers").checked===false&&document.getElementById("specialCharacters").checked===false) {
+        alert("You must select at least one character set.");
+    }else{
     return passwordOutput;
+    }
 }
 
 // Write password to the #password input
@@ -53,6 +61,10 @@ function writePassword() {
 
 function copyToClipboard() {
     // BONUS 
+    var copyText = document.getElementById("password");
+    copyText.select();
+    document.execCommand("copy");
+    alert("Copied the text: " + copyText.value);
 }
 
 // Add event listener to generate button

@@ -15,14 +15,15 @@
     <input type="checkbox" id="upperCase" checked>Upper Case
     <input type="checkbox" id="numbers" checked>Numbers
     <input type="checkbox" id="specialCharacters" checked>Special Characters<br>
+    <div class="userInput">Password Length (Between 8 and 128)<input type="number" min="8" max="128" value="10" id="passwordLength"></div><br>
     <textarea
       readonly
       id="password"
       placeholder="Your Secure Password"
       aria-label="Generated Password"
-    ></textarea>
+    ></textarea><br>
     <button id="generate">Generate Password</button>
-    <button id="copy">
+    <button onclick="copyToClipboard()" id="copy">
       Copy to Clipboard
     </button>
     <script src="script.js"></script>
